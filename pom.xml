@@ -11,7 +11,7 @@
     <version>2.0.0.M5</version>
   </parent>
 
-  <groupId>io.springoneplatform.2107</groupId>
+  <groupId>io.springoneplatform.2017</groupId>
   <artifactId>scaling-springboot-realtime</artifactId>
   <version>1.0.0.RELEASE</version>
   <packaging>pom</packaging>
