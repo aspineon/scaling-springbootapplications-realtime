@@ -17,8 +17,10 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>spring-gemfire-core</module>
     <module>spring-gemfire-before</module>
     <module>spring-gemfire-after</module>
+    <module>spring-gemfire-after-complete</module>
   </modules>
 
   <name>Scaling Spring Boot Applications in Real-Time</name>
@@ -97,20 +99,21 @@
   </scm>
 
   <properties>
-    <apache-geode.version>1.2.1</apache-geode.version>
-    <cp-elements.version>1.0.0.M3</cp-elements.version>
     <java.version>1.8</java.version>
     <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <apache-geode.version>1.2.1</apache-geode.version>
+    <cp-elements.version>1.0.0.M3</cp-elements.version>
+    <lombok.version>1.16.18</lombok.version>
     <multithreadedtc.version>1.01</multithreadedtc.version>
     <pivotal-gemfire.version>9.1.1</pivotal-gemfire.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring-data-gemfire.version>2.0.1.RELEASE</spring-data-gemfire.version>
-    <spring-data-geode.version>2.0.1.RELEASE</spring-data-geode.version>
+    <spring-data-gemfire.version>2.0.2.RELEASE</spring-data-gemfire.version>
+    <spring-data-geode.version>2.0.2.RELEASE</spring-data-geode.version>
     <spring-boot-data-gemfire.version>1.0.0.M1</spring-boot-data-gemfire.version>
     <spring-boot-data-geode.version>1.0.0.M1</spring-boot-data-geode.version>
-    <spring-session-data-gemfire.version>2.0.0.RC1</spring-session-data-gemfire.version>
-    <spring-session-data-geode.version>2.0.0.RC1</spring-session-data-geode.version>
+    <spring-session-data-gemfire.version>2.0.0.RC2</spring-session-data-gemfire.version>
+    <spring-session-data-geode.version>2.0.0.RC2</spring-session-data-geode.version>
     <spring-shell.version>1.2.0.RELEASE</spring-shell.version>
   </properties>
 
@@ -142,24 +145,9 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.apache.geode</groupId>
-        <artifactId>geode-core</artifactId>
-        <version>${apache-geode.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.geode</groupId>
-        <artifactId>geode-cq</artifactId>
-        <version>${apache-geode.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.geode</groupId>
-        <artifactId>geode-lucene</artifactId>
-        <version>${apache-geode.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.geode</groupId>
-        <artifactId>geode-wan</artifactId>
-        <version>${apache-geode.version}</version>
+        <groupId>io.springoneplatform.2017</groupId>
+        <artifactId>spring-gemfire-core</artifactId>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>io.pivotal.gemfire</groupId>
@@ -180,11 +168,36 @@
         <groupId>io.pivotal.gemfire</groupId>
         <artifactId>geode-wan</artifactId>
         <version>${pivotal-gemfire.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.geode</groupId>
+        <artifactId>geode-core</artifactId>
+        <version>${apache-geode.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.geode</groupId>
+        <artifactId>geode-cq</artifactId>
+        <version>${apache-geode.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.geode</groupId>
+        <artifactId>geode-lucene</artifactId>
+        <version>${apache-geode.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.geode</groupId>
+        <artifactId>geode-wan</artifactId>
+        <version>${apache-geode.version}</version>
       </dependency>
       <dependency>
         <groupId>org.codeprimate</groupId>
         <artifactId>cp-elements</artifactId>
         <version>${cp-elements.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.data</groupId>
@@ -223,12 +236,20 @@
 
   <dependencies>
     <dependency>
+      <groupId>io.springoneplatform.2017</groupId>
+      <artifactId>spring-gemfire-core</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.codeprimate</groupId>
       <artifactId>cp-elements</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -295,4 +316,3 @@
   </build>
 
 </project>
-
