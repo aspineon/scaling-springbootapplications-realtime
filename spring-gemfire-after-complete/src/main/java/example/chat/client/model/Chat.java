@@ -16,12 +16,9 @@
 
 package example.chat.client.model;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.cp.elements.lang.Identifiable;
-import org.cp.elements.util.ComparatorResultBuilder;
 import org.springframework.data.gemfire.mapping.annotation.Region;
 
 import example.chat.model.Person;
@@ -33,18 +30,17 @@ import lombok.RequiredArgsConstructor;
  * The {@link Chat} class is a Abstract Data Type (ADT) modeling a chat in a Chat application.
  *
  * @author John Blum
- * @see java.lang.Comparable
  * @see java.time.LocalDateTime
- * @see org.cp.elements.lang.Identifiable
  * @see org.springframework.data.gemfire.mapping.annotation.Region
  * @see example.chat.model.Person
+ * @see lombok
  * @since 1.0.0
  */
 @Data
 @Region("Chats")
 @RequiredArgsConstructor(staticName = "newChat")
 @SuppressWarnings("unused")
-public class Chat implements Comparable<Chat>, Identifiable<String>, Serializable {
+public class Chat {
 
 	private String id;
 
@@ -58,13 +54,10 @@ public class Chat implements Comparable<Chat>, Identifiable<String>, Serializabl
 	@NonNull
 	private String message;
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public int compareTo(Chat that) {
-
-		return ComparatorResultBuilder.<Comparable>create()
-			.doCompare(this.getTimestamp(), that.getTimestamp())
-			.build();
+	public Chat identifiedBy(String id) {
+		getPerson().setId(id);
+		setId(id);
+		return this;
 	}
 
 	public Chat withProcessId(Object processId) {
