@@ -16,12 +16,9 @@
 
 package example.chat.server;
 
-import org.apache.geode.cache.GemFireCache;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.gemfire.PartitionedRegionFactoryBean;
 import org.springframework.data.gemfire.config.annotation.CacheServerApplication;
 import org.springframework.data.gemfire.config.annotation.EnableLocator;
 import org.springframework.data.gemfire.config.annotation.EnableManager;
@@ -40,17 +37,5 @@ public class ChatServerApplication {
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(ChatServerApplication.class).web(WebApplicationType.NONE).build(args).run();
-	}
-
-	@Bean("Chats")
-	public PartitionedRegionFactoryBean<Object, Object> chatsRegion(GemFireCache gemfireCache) {
-
-		PartitionedRegionFactoryBean<Object, Object> partitionRegion = new PartitionedRegionFactoryBean<>();
-
-		partitionRegion.setCache(gemfireCache);
-		partitionRegion.setClose(false);
-		partitionRegion.setPersistent(false);
-
-		return partitionRegion;
 	}
 }
