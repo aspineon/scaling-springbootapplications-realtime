@@ -17,10 +17,10 @@
 package example.chat.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-import org.cp.elements.lang.Identifiable;
 import org.cp.elements.util.ComparatorResultBuilder;
+import org.springframework.data.annotation.Transient;
 
 import lombok.Data;
 import lombok.NonNull;
@@ -32,23 +32,22 @@ import lombok.RequiredArgsConstructor;
  * @author John Blum
  * @see java.lang.Comparable
  * @see java.io.Serializable
- * @see java.time.LocalDate
- * @see org.cp.elements.lang.Identifiable
+ * @see java.time.LocalDateTime
  * @see lombok
  * @since 1.0.0
  */
 @Data
 @RequiredArgsConstructor(staticName = "newPerson")
 @SuppressWarnings("unused")
-public class Person implements Comparable<Person>, Identifiable<Long>, Serializable {
+public class Person implements Comparable<Person>, Serializable {
 
 	private static final long serialVersionUID = -9009417088665004887L;
 
-	private Long id;
+	private String id;
 
 	private Gender gender;
 
-	private LocalDate birthDate;
+	private LocalDateTime birthDate;
 
 	@NonNull
 	private String firstName;
@@ -56,6 +55,7 @@ public class Person implements Comparable<Person>, Identifiable<Long>, Serializa
 	@NonNull
 	private String lastName;
 
+	@Transient
 	public String getName() {
 		return String.format("%1$s %2$s", getFirstName(), getLastName());
 	}
@@ -65,7 +65,7 @@ public class Person implements Comparable<Person>, Identifiable<Long>, Serializa
 		return this;
 	}
 
-	public Person born(LocalDate birthDate) {
+	public Person born(LocalDateTime birthDate) {
 		setBirthDate(birthDate);
 		return this;
 	}
@@ -81,13 +81,13 @@ public class Person implements Comparable<Person>, Identifiable<Long>, Serializa
 			.build();
 	}
 
+	public Person identifiedBy(Long id) {
+		setId(this.id);
+		return this;
+	}
+
 	@Override
 	public String toString() {
 		return getName();
-	}
-
-	enum Gender {
-		FEMALE,
-		MALE
 	}
 }
