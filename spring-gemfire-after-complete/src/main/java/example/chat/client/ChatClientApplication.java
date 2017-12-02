@@ -45,6 +45,9 @@ import example.chat.client.service.SimpleChatService;
  * @see org.springframework.data.gemfire.config.annotation.EnableEntityDefinedRegions
  * @see org.springframework.data.gemfire.config.annotation.EnablePdx
  * @see org.springframework.data.gemfire.repository.config.EnableGemfireRepositories
+ * @see example.chat.client.model.Chat
+ * @see example.chat.client.repo.ChatRepository
+ * @see example.chat.client.service.SimpleChatService
  * @since 1.0.0
  */
 @SpringBootApplication
@@ -54,7 +57,7 @@ import example.chat.client.service.SimpleChatService;
 @EnableEntityDefinedRegions(basePackageClasses = Chat.class)
 @EnableGemfireRepositories(basePackageClasses = ChatRepository.class)
 @EnableContinuousQueries
-//@EnablePdx
+@EnablePdx
 @EnableChatBot
 @SuppressWarnings("all")
 public class ChatClientApplication {
