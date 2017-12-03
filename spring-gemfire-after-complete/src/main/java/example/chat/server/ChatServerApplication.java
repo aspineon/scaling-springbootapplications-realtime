@@ -22,6 +22,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.data.gemfire.config.annotation.CacheServerApplication;
 import org.springframework.data.gemfire.config.annotation.EnableLocator;
 import org.springframework.data.gemfire.config.annotation.EnableManager;
+import org.springframework.data.gemfire.config.annotation.EnablePdx;
 
 /**
  * The ChatServerApplication class...
@@ -33,9 +34,10 @@ import org.springframework.data.gemfire.config.annotation.EnableManager;
 @CacheServerApplication(name = "ChatServerApplication")
 @EnableLocator
 @EnableManager(start = true)
+@EnablePdx
 public class ChatServerApplication {
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(ChatServerApplication.class).web(WebApplicationType.NONE).build(args).run();
+		new SpringApplicationBuilder(ChatServerApplication.class).web(WebApplicationType.NONE).build().run(args);
 	}
 }
