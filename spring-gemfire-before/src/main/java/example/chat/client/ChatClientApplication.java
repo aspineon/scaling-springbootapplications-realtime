@@ -35,7 +35,7 @@ import example.chat.client.service.SimpleChatService;
  */
 @SpringBootApplication
 @EnableChatBot
-@ImportResource("chats-context.xml")
+@ImportResource("chat-client-context.xml")
 @SuppressWarnings("unused")
 public class ChatClientApplication {
 
