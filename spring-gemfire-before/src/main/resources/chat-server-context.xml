@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:gfe="http://www.springframework.org/schema/geode"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/geode http://www.springframework.org/schema/geode/spring-geode.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+">
+
+	<context:property-placeholder/>
+
+	<util:properties id="gemfireProperties">
+		<prop key="name">ChatServerApplication</prop>
+		<prop key="jmx-manager">true</prop>
+		<prop key="jmx-manager-start">true</prop>
+		<prop key="start-locator">${gemfire.locator.host-port:localhost[10334]}</prop>
+		<prop key="log-level">config</prop>
+	</util:properties>
+
+	<gfe:cache properties-ref="gemfireProperties" pdx-serializer-ref="MappingPdxSerializer"/>
+
+	<gfe:cache-server id="gemfireCacheServer" port="${gemfire.cache.server.port:40404}"/>
+
+	<gfe:partitioned-region id="Chats"/>
+
+	<bean id="MappingPdxSerializer" class="org.springframework.data.gemfire.mapping.MappingPdxSerializer"/>
+
+</beans>

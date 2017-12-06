@@ -16,16 +16,10 @@
 
 package example.chat.server;
 
-import org.apache.geode.cache.GemFireCache;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.gemfire.PartitionedRegionFactoryBean;
-import org.springframework.data.gemfire.config.annotation.CacheServerApplication;
-import org.springframework.data.gemfire.config.annotation.EnableLocator;
-import org.springframework.data.gemfire.config.annotation.EnableManager;
-import org.springframework.data.gemfire.config.annotation.EnablePdx;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * The ChatServerApplication class...
@@ -34,25 +28,10 @@ import org.springframework.data.gemfire.config.annotation.EnablePdx;
  * @since 1.0.0
  */
 @SpringBootApplication
-@CacheServerApplication(name = "ChatServerApplication")
-@EnableLocator
-@EnableManager(start = true)
-@EnablePdx
+@ImportResource("chat-server-context.xml")
 public class ChatServerApplication {
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(ChatServerApplication.class).web(WebApplicationType.NONE).build().run(args);
-	}
-
-	@Bean("Chats")
-	public PartitionedRegionFactoryBean<Object, Object> chatsRegion(GemFireCache gemfireCache) {
-
-		PartitionedRegionFactoryBean<Object, Object> partitionRegion = new PartitionedRegionFactoryBean<>();
-
-		partitionRegion.setCache(gemfireCache);
-		partitionRegion.setClose(false);
-		partitionRegion.setPersistent(false);
-
-		return partitionRegion;
 	}
 }
