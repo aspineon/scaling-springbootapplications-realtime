@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:gfe="http://www.springframework.org/schema/geode"
+	   xmlns:gfe-data="http://www.springframework.org/schema/data/gemfire"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/geode http://www.springframework.org/schema/geode/spring-geode.xsd
+        http://www.springframework.org/schema/data/gemfire http://www.springframework.org/schema/data/gemfire/spring-data-gemfire.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+">
+
+	<util:properties id="gemfireProperties">
+		<prop key="name">ChatClientApplication</prop>
+		<prop key="log-level">config</prop>
+	</util:properties>
+
+	<gfe:client-cache properties-ref="gemfireProperties"/>
+
+	<gfe:pool id="gemfirePool" subscription-enabled="true">
+		<gfe:locator host="localhost" port="10334"/>
+	</gfe:pool>
+
+	<gfe:client-region id="Chats" pool-name="gemfirePool" shortcut="PROXY"/>
+
+	<gfe:cq-listener-container id="ContinuousQueryListenerContainer">
+		<gfe:listener name="ChatReceive" query="SELECT * FROM /Chats" ref="ChatService" method="receive"/>
+	</gfe:cq-listener-container>
+
+	<gfe-data:repositories base-package="example.chat.client.repo"/>
+
+</beans>

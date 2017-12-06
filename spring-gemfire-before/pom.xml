@@ -47,6 +47,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>io.springoneplatform.2017</groupId>
+      <artifactId>spring-gemfire-core</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-geode</artifactId>
     </dependency>
@@ -54,6 +58,11 @@
       <groupId>org.springframework.shell</groupId>
       <artifactId>spring-shell</artifactId>
       <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jetty</artifactId>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 
