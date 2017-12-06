@@ -16,30 +16,20 @@
 
 package example.chat.client.repo;
 
-import java.util.List;
-
-import org.springframework.data.gemfire.repository.query.annotation.Trace;
 import org.springframework.data.repository.CrudRepository;
 
 import example.chat.client.model.Chat;
-import example.chat.model.Person;
 
 /**
  * The {@link ChatRepository} interface defines a Data Access Object (DAO) containing basic CRUD
  * and simple Query data access operations for {@link Chat} objects.
  *
  * @author John Blum
- * @see java.lang.Long
- * @see org.springframework.data.gemfire.repository.query.annotation.Trace
  * @see org.springframework.data.repository.CrudRepository
  * @see example.chat.client.model.Chat
- * @see example.chat.model.Person
  * @since 1.0.0
  */
 @SuppressWarnings("unused")
 public interface ChatRepository extends CrudRepository<Chat, String> {
-
-	@Trace
-	List<Chat> findByPerson(Person person);
 
 }
