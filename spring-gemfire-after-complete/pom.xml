@@ -53,6 +53,10 @@
 		</developer>
 	</developers>
 
+	<properties>
+		<chatClientMainClass>example.chat.client.ChatClientApplication</chatClientMainClass>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>io.springoneplatform.2017</groupId>
@@ -77,5 +81,17 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>${chatClientMainClass}</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
