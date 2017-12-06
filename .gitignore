@@ -3,4 +3,5 @@
 *.iws
 *.DS_Store
 .idea/
+john-key-info.txt
 target/

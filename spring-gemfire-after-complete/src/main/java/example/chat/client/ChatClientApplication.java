@@ -26,6 +26,7 @@ import org.springframework.data.gemfire.config.annotation.EnableClusterConfigura
 import org.springframework.data.gemfire.config.annotation.EnableContinuousQueries;
 import org.springframework.data.gemfire.config.annotation.EnableEntityDefinedRegions;
 import org.springframework.data.gemfire.config.annotation.EnablePdx;
+import org.springframework.data.gemfire.config.annotation.EnableSecurity;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 
 import example.chat.bot.config.EnableChatBot;
@@ -58,6 +59,7 @@ import example.chat.client.service.SimpleChatService;
 @EnableGemfireRepositories(basePackageClasses = ChatRepository.class)
 @EnableContinuousQueries
 @EnablePdx
+@EnableSecurity
 @EnableChatBot
 @SuppressWarnings("all")
 public class ChatClientApplication {
