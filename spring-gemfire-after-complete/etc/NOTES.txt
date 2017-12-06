@@ -1,1 +1,3 @@
 export GEODE_HOME=/Users/jblum/pivdev/apache-geode-1.2.1
+
+cf push chat-client -u none --no-start -p /Users/jblum/pivdev/springonePlatform-2017/scaling-springboot-apps-realtime/spring-gemfire-before/target/spring-gemfire-before-1.0.0.RELEASE.jar

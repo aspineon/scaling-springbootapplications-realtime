@@ -20,7 +20,9 @@
 		<prop key="log-level">config</prop>
 	</util:properties>
 
-	<gfe:client-cache properties-ref="gemfireProperties"/>
+	<bean id="pdxSerializer" class="org.springframework.data.gemfire.mapping.MappingPdxSerializer"/>
+
+	<gfe:client-cache properties-ref="gemfireProperties" pdx-serializer-ref="pdxSerializer"/>
 
 	<gfe:pool id="gemfirePool" subscription-enabled="true">
 		<gfe:locator host="${gemfire.locator.host:localhost}" port="${gemfire.locator.port:10334}"/>
