@@ -54,9 +54,9 @@ import example.chat.client.service.SimpleChatService;
 @ClientCacheApplication(name = "ChatClientApplication",
 	locators = @ClientCacheApplication.Locator, subscriptionEnabled = true)
 @EnableClusterConfiguration(useHttp = true)
+@EnableContinuousQueries
 @EnableEntityDefinedRegions(basePackageClasses = Chat.class)
 @EnableGemfireRepositories(basePackageClasses = ChatRepository.class)
-@EnableContinuousQueries
 @EnablePdx
 @EnableChatBot
 @SuppressWarnings("all")
